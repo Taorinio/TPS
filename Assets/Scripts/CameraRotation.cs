@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Main : MonoBehaviour
+public class Camerarotation : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -10,7 +10,8 @@ public class Main : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
+    // Update is called once per frame
+    void Update()
     {
         
     }
