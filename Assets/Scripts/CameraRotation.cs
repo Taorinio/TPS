@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
-
     public float RotationSpeed = 1f;
-    public float MinAngle;
-    public float MaxAngle;
-    public Transform CameraAxis;
-
+    public Transform Camera;
+    public float Min;
+    public float Max;
+    float newAngleX;
+    float newAngleY;
     void Update()
     {
-        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y + Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse X"), 0);
-        
-        float ValueX = CameraAxis.localEulerAngles.x - Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse Y");
-
-
-        CameraAxis.localEulerAngles = new Vector3(ValueX, 0, 0);
+        newAngleY = transform.localEulerAngles.y + Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse X");
+        transform.localEulerAngles = new Vector3(0, newAngleY, 0);
+        newAngleX = Camera.localEulerAngles.x - Time.deltaTime * RotationSpeed * Input.GetAxis("Mouse Y");
+        if (newAngleX > 180) newAngleX -= 360;
+        Camera.localEulerAngles = new Vector3(Mathf.Clamp(newAngleX, Min, Max), 0, 0);
     }
 }
