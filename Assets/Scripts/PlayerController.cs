@@ -4,28 +4,65 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    float fallVelocity = 1f;
-    public float jumpForce = 6.5f;
-    public float speed = 1f;
-    CharacterController CharCont;
-    Vector3 moveVector;
+    private float gravity = 9.81f;
 
-    void Start()
-    {
-        CharCont = GetComponent<CharacterController>();
-    }
+    private float _fallVelocity = 0f;
 
-    void Update()
+    private CharacterController _characterController;
+
+    public float jumpForce;
+
+    public float speed;
+
+    private Vector3 _moveVector;
+
+    void Update ()
     {
-        moveVector = transform.forward * Input.GetAxis("Vertical") * speed * Time.fixedDeltaTime + transform.right * Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime + Vector3.down * fallVelocity * Time.fixedDeltaTime;
-        if (Input.GetKeyDown(KeyCode.Space) && CharCont.isGrounded) {
-            fallVelocity = -jumpForce;
+        // Movement
+        _moveVector = Vector3.zero;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            _moveVector += transform.forward;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            _moveVector -= transform.forward;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            _moveVector-= transform.right;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            _moveVector += transform.right;
+        }
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
+        {
+            _fallVelocity = -jumpForce;
         }
     }
 
+    void Start()
+    {
+        _characterController = GetComponent<CharacterController>();
+    }
+
+
     void FixedUpdate()
     {
-        fallVelocity += CharCont.isGrounded ? 0 : 9.81f * Time.fixedDeltaTime;
-        CharCont.Move(moveVector);
+
+        _characterController.Move(_moveVector * speed * Time.fixedDeltaTime);
+
+
+        // Fall and Jump
+        _fallVelocity += gravity * Time.fixedDeltaTime;
+
+        _characterController.Move(Vector3.down * _fallVelocity * Time.fixedDeltaTime);
+        if (_characterController.isGrounded)
+        {
+            _fallVelocity = 0;
+        }
     }
 }
