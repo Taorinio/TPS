@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    public int Health = 6;
     private NavMeshAgent _navMeshAgent;
     public List<Transform> patrolPoints;
     public CharacterController player;
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     {
         See();
         Patrol();
+        IsAlive();
     }
 
     void Patrol()
@@ -59,6 +61,18 @@ public class EnemyAI : MonoBehaviour
                     isPlayerNoticed = true;
                 }
             }
+        }
+    }
+
+    void IsAlive() {
+        if (Health <= 0) {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Hurt")) {
+            Health -= 1;
         }
     }
 }

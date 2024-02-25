@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 659016016832520222}
   m_Layer: 0
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: Hurt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 659016017245946549}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Hurt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,4 +156,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 50
   Lifetime: 5
-  target: {fileID: 0}
