@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     private Transform randomSelected;
     private bool isPlayerNoticed;
     public float fieldOfView = 60f;
+    public float minDetectDistance = 1f;
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -19,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Raysee();
+        See();
         Patrol();
     }
 
@@ -43,16 +44,17 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    void Raysee()
+    void See()
     {
         var direction = player.transform.position - transform.position;
+        var isNear = Vector3.Distance(transform.position, player.transform.position) < minDetectDistance;
         isPlayerNoticed = false;
-        if (Vector3.Angle(transform.forward, direction) < fieldOfView)
+        if (Vector3.Angle(transform.forward, direction) < fieldOfView || isNear)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
             {
-                if (hit.collider.gameObject == player.gameObject)
+                if (hit.collider.gameObject == player.gameObject || isNear) // :)
                 {
                     isPlayerNoticed = true;
                 }
