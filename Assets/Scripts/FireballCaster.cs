@@ -9,6 +9,11 @@ public class FireballCaster : MonoBehaviour
     public Transform target;
     public Camera PlayerCamera;
     public float Distance;
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update()
     {
         var ray = PlayerCamera.ViewportPointToRay(new Vector3(0.5f, 0.7f, 0));

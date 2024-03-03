@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5185742735038483095}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,6 +75,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  DamageSpeed: 2
   player: {fileID: 0}
   fieldOfView: 90
   minDetectDistance: 5
