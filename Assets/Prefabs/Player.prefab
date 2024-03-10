@@ -1101,6 +1101,7 @@ GameObject:
   - component: {fileID: 2211138310917390414}
   - component: {fileID: 2211138311346952665}
   - component: {fileID: 2211138310917391281}
+  - component: {fileID: 7694957338220774589}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1115,13 +1116,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2211138310917391280}
-  m_LocalRotation: {x: 0.07384739, y: 0, z: 0, w: 0.9972696}
-  m_LocalPosition: {x: 0.77, y: 1.15, z: -1.97}
+  m_LocalRotation: {x: 0.07384739, y: -0, z: -0, w: 0.9972696}
+  m_LocalPosition: {x: 0.7700002, y: 1.48, z: -1.969999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2211138310971963160}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 8.47, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 27.08, y: 0, z: 0}
 --- !u!20 &2211138311346952665
 Camera:
   m_ObjectHideFlags: 0
@@ -1173,6 +1174,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2211138310917391280}
   m_Enabled: 1
+--- !u!95 &7694957338220774589
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211138310917391280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f038c5515b4244446870e8ac37907a4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2211138310924721445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,11 +1309,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2211138310971963163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.78, z: -0.85}
+  m_LocalPosition: {x: 0, y: 0.28, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2211138310917390414}
   - {fileID: 2211138312153065314}
+  - {fileID: 2211138310917390414}
   m_Father: {fileID: 2211138311974814341}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1586,6 +1606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2211138311161631745}
+  - component: {fileID: 1970797983441608913}
   m_Layer: 0
   m_Name: Ch39_nonPBR
   m_TagString: Untagged
@@ -1609,6 +1630,25 @@ Transform:
   m_Father: {fileID: 2211138311974814341}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1970797983441608913
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211138311161631744}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b25d00d2d9a8bee4fbcd37b0183115cb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2211138311221799387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 425
-  Camera: {fileID: 2211138310971963160}
+  Camera: {fileID: 2211138310917390414}
   Min: -44
   Max: 53
 --- !u!143 &2211138310688610268
@@ -2507,6 +2547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 7.5
   speed: 7
+  AnimatorController: {fileID: 1970797983441608913}
 --- !u!114 &1989796046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2524,6 +2565,9 @@ MonoBehaviour:
   GameOverScreen: {fileID: 832608410}
   GameplayUI: {fileID: 5204852957334624300}
   PlayerModel: {fileID: 2211138311039680530}
+  animator: {fileID: 1970797983441608913}
+  go: {fileID: 1970797983441608913}
+  Caster: {fileID: 2211138312153065315}
 --- !u!1 &2211138312094357335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,7 +2760,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2211138310971963160}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2211138312153065315
 MonoBehaviour:
@@ -3201,7 +3245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -279.77267, y: -202.99997}
+  m_AnchoredPosition: {x: -279.77264, y: -202.99997}
   m_SizeDelta: {x: 282.8042, y: 30.393784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2631163585492144777

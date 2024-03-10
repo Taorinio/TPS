@@ -8,13 +8,15 @@ public class EnemyAI : MonoBehaviour
     public int Health = 6;
     private NavMeshAgent _navMeshAgent;
     public List<Transform> patrolPoints;
-    public float DamageSpeed = 2f; 
+    public float Damage = 25f; 
     public CharacterController player;
     private Transform randomSelected;
     private bool isPlayerNoticed;
     public float fieldOfView = 60f;
     public float minDetectDistance = 1f;
     private PlayerHealth PlayerH;
+    public Animator animator;
+    bool isAlive = true;
     bool isNear;
     void Start()
     {
@@ -62,7 +64,7 @@ public class EnemyAI : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
             {
-                if (hit.collider.gameObject == player.gameObject || isNearEnemy) // :)
+                if ((hit.collider.gameObject == player.gameObject || isNearEnemy) && PlayerH.Health > 0) // :)
                 {
                     isPlayerNoticed = true;
                 }
@@ -72,19 +74,25 @@ public class EnemyAI : MonoBehaviour
 
     void IsAlive() {
         if (Health <= 0) {
-            Destroy(gameObject);
+            GetComponent<NavMeshAgent>().enabled = false;
+            animator.SetTrigger("Death");
+            GetComponent<EnemyAI>().enabled = false;
+            isAlive = false;
         }
     }
 
     void Attack() {
-        if (isNear && isPlayerNoticed) {
-            PlayerH.DealDamage(DamageSpeed);
-        }
+        if (isNear && isPlayerNoticed && PlayerH.Health > 0) animator.SetTrigger("Attack");
+    }
+
+    public void AttackEv() {
+        if (isNear && isPlayerNoticed) PlayerH.DealDamage(Damage);
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Hurt")) {
+        if (other.gameObject.CompareTag("Hurt") && isAlive) {
             Health -= 1;
+            animator.SetTrigger("Hit");
         }
     }
 }

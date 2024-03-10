@@ -15,33 +15,15 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     private Vector3 _moveVector;
+    public Animator AnimatorController;
+    
 
     void Update ()
     {
         // Movement
-        _moveVector = Vector3.zero;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            _moveVector += transform.forward;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            _moveVector -= transform.forward;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            _moveVector-= transform.right;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            _moveVector += transform.right;
-        }
+        Movement();
         // Jump
-        if (Input.GetKey(KeyCode.Space) && _characterController.isGrounded)
-        {
-            _fallVelocity = -jumpForce;
-        }
+        JumpUpdate();
     }
 
     void Start()
@@ -63,6 +45,39 @@ public class PlayerController : MonoBehaviour
         if (_characterController.isGrounded)
         {
             _fallVelocity = 0;
+        }
+    }
+    void Movement() {
+        _moveVector = Vector3.zero;
+        var RunDir = 0;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            _moveVector += transform.forward;
+            RunDir = 1;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            _moveVector -= transform.forward;
+            RunDir = 2;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            _moveVector -= transform.right;
+            RunDir = 4;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            _moveVector += transform.right;
+            RunDir = 3;
+        }
+
+        AnimatorController.SetInteger("RunInteger", RunDir);
+    }
+    void JumpUpdate() {
+        if (Input.GetKey(KeyCode.Space) && _characterController.isGrounded)
+        {
+            _fallVelocity = -jumpForce;
         }
     }
 }
