@@ -2741,8 +2741,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2211138312153065314}
   - component: {fileID: 2211138312153065315}
+  - component: {fileID: 5069710135833340363}
   m_Layer: 0
-  m_Name: FireballCaster
+  m_Name: Caster
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2778,6 +2779,20 @@ MonoBehaviour:
   target: {fileID: 2211138311935795024}
   PlayerCamera: {fileID: 2211138311346952665}
   Distance: 14.7
+--- !u!114 &5069710135833340363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2211138312153065317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf16a005acbdf14283d7bdfe1e66e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Grenade: {fileID: 7421037314281459095, guid: 87e9231213ec44719864caab8127dd3b, type: 3}
+  Force: 10
 --- !u!1 &2211138312160966209
 GameObject:
   m_ObjectHideFlags: 0

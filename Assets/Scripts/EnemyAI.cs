@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    public int Health = 6;
+    public float Health = 100f;
     private NavMeshAgent _navMeshAgent;
     public List<Transform> patrolPoints;
     public float Damage = 25f; 
@@ -91,8 +91,11 @@ public class EnemyAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Hurt") && isAlive) {
-            Health -= 1;
+            DealDamage(10f);
             animator.SetTrigger("Hit");
         }
+    }
+    public void DealDamage(float Damage) {
+        Health -= Damage;
     }
 }
